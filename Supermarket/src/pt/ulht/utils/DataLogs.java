@@ -14,7 +14,7 @@ import org.jdom2.output.XMLOutputter;
 
 public class DataLogs {
 	
-	private static final String filePath = "bin\\testJDOM.xml";
+	private static final String filePath = "testJDOM.xml";
 	
 	
 	//Inicializar o Ficheiro de Log
