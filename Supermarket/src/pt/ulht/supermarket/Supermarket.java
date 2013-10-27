@@ -1,5 +1,6 @@
 package pt.ulht.supermarket;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,12 +11,14 @@ import pt.ulht.utils.Helpers;
 
 
 public class Supermarket {
-	
+		
+		public static List<Cliente> listaClientesLog = new ArrayList<Cliente>(); 
+		public static List<Caixa> listaCaixasLog = new ArrayList<Caixa>();
 	
 	public static void main(String[] args) {
 		//args[0] - Nº Clientes ; args[1] - Nº Caixas ??
 		
-
+		
 		
 		Integer modo;
 		Integer escolhaContinuar;
@@ -36,11 +39,12 @@ public class Supermarket {
 			break;
 		case 2:
 			System.out.println("Escolheu Continuar Execução");
-			continuar = true;
 			nClientesCriados = DataLogs.getClientListFromXML().size();
 			nCaixasCriadas = DataLogs.getRegisterListFromXML().size();
 			System.out.println("Nº de Clientes Existentes: "+nClientesCriados);
 			System.out.println("Nº de Caixas Existentes: "+nCaixasCriadas);
+			listaCaixasLog = DataLogs.buildRegisterListFromLog();
+			listaClientesLog = DataLogs.buildClientListFromLog();
 			break;
 		}
 		
@@ -95,6 +99,7 @@ public class Supermarket {
 							ModoManual.mostrarFilas();
 							break;
 						case 4:
+							//DataLogs.deleteRegister("2"); - Testing
 							ModoManual.retirarCaixas();
 							break;
 						case 5:

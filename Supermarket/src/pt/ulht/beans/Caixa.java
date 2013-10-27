@@ -14,16 +14,16 @@ public class Caixa implements Runnable {
 	Integer tempoMedioAtendimento;
 	LinkedList<Cliente> listaClientes = new LinkedList<Cliente>();
 	
-	public Caixa(Integer id) {
+	public Caixa(Integer id) { //Para novas Caixas
 		this.id = id;
 		this.nClientesFila = listaClientes.size();
 		this.nClientesAtendidos = 0;
 		this.tempoMedioAtendimento = 0;
 		this.tempoTotalAtendimento = 0;
-		nCaixas += 1;
+		this.nCaixas += 1;
 	}
 	
-	public Caixa(Integer id, Integer nClientesFila, Integer nClientesAtendidos, Integer tempoMedioAtendimento, Integer tempoTotalAtendimento) {
+	public Caixa(Integer id, Integer nClientesFila, Integer nClientesAtendidos, Integer tempoMedioAtendimento, Integer tempoTotalAtendimento) { //Para caixas gravadas em Log
 		this.id = id;
 		this.nClientesFila = nClientesFila;
 		this.nClientesAtendidos = nClientesAtendidos;
@@ -33,8 +33,7 @@ public class Caixa implements Runnable {
 	
 	@Override
 	public void run() {
-
-		
+				
 	}
 	
 	//Getters and Setters

@@ -15,9 +15,6 @@ public class ModoManual {
 	public static List<Caixa> listaCaixasManual = new ArrayList<Caixa>();
 	public static List<Cliente> listaClientesManual = new ArrayList<Cliente>();
 	
-	public static List<Cliente> listaClientesContinuar = DataLogs.buildClientListFromLog();
-	public static List<Caixa> listaCaixasContinuar = DataLogs.buildRegisterListFromLog();
-	
 	public static void criarCliente() {
 		Random randomGen = new Random();
 		Integer nProdutos = Helpers.generateRandomInteger(2, 120, randomGen);
@@ -38,10 +35,9 @@ public class ModoManual {
 	}
 	
 	public static void mostrarFilas() {
-		List<Caixa> listaCaixasContinuar = DataLogs.buildRegisterListFromLog();
-		if (listaCaixasContinuar != null) {
-			for (int i = 0; i < listaCaixasContinuar.size(); i++) {
-				listaCaixasManual.add(listaCaixasContinuar.get(i));
+		if (!Supermarket.listaCaixasLog.isEmpty()) {
+			for (int i = 0; i < Supermarket.listaCaixasLog.size(); i++) {
+				listaCaixasManual.add(Supermarket.listaCaixasLog.get(i));
 			}
 		}
 			for (int i = 0; i < listaCaixasManual.size(); i++)  {
@@ -56,7 +52,21 @@ public class ModoManual {
 		} 
 	
 	
-	public static void retirarCaixas() {
+	public static void retirarCaixas() { //Not Working
+		List<Caixa> listaCaixasLog = DataLogs.buildRegisterListFromLog();
+		
+		if (listaCaixasLog != null){
+			for (int i = 0; i < listaCaixasLog.size(); i++) {
+				listaCaixasManual.add(listaCaixasLog.get(i));
+			}
+		}
+		
+		for (Caixa caixa : listaCaixasManual) { //For each Caixa in ListaCaixasManual
+			if (caixa.getnClientesFila() == 0) { //Se não tiver clientes em fila, remove-se da lista
+				listaCaixasManual.remove(caixa);
+			}
+		}
+		
 		
 	}
 	

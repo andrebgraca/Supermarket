@@ -271,7 +271,7 @@ public class DataLogs {
 			
 			Element eCaixas = rootNode.getChild("caixas");
 			Element eCaixa = new Element("caixa");
-			
+						
 			eCaixa.setAttribute(new Attribute("id", id));
 			eCaixa.addContent(new Element("nFila").setText(nFila));
 			eCaixa.addContent(new Element("nAtend").setText(nAtend));
@@ -292,6 +292,39 @@ public class DataLogs {
 		} catch (JDOMException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void deleteRegister(String id) { //Not Working
+		
+		try {
+			
+			SAXBuilder builder = new SAXBuilder();
+			File xmlFile = new File(filePath);
+		
+			Document doc = (Document) builder.build(xmlFile);
+			Element rootNode = doc.getRootElement();
+			
+			Element eCaixas = rootNode.getChild("caixas");
+			List<Element> listaCaixas = eCaixas.getChildren();
+			Element registerToDelete = null;
+			
+			for (int i = 0; i < listaCaixas.size(); i++) {
+				if (listaCaixas.get(i).getAttribute("id").getValue() == id) {
+					registerToDelete = listaCaixas.get(i);
+				}
+			}
+			
+			rootNode.removeContent(registerToDelete);
+			
+		} catch (IOException io) {
+			io.printStackTrace();
+		} catch (JDOMException jdex) {
+			jdex.printStackTrace();
+		}
+	}
+	
+	public static void deleteClient(String id) {
+		
 	}
 
 	
