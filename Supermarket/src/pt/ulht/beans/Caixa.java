@@ -23,6 +23,14 @@ public class Caixa implements Runnable {
 		nCaixas += 1;
 	}
 	
+	public Caixa(Integer id, Integer nClientesFila, Integer nClientesAtendidos, Integer tempoMedioAtendimento, Integer tempoTotalAtendimento) {
+		this.id = id;
+		this.nClientesFila = nClientesFila;
+		this.nClientesAtendidos = nClientesAtendidos;
+		this.tempoMedioAtendimento = tempoMedioAtendimento;
+		this.tempoTotalAtendimento = tempoTotalAtendimento;
+	}
+	
 	@Override
 	public void run() {
 

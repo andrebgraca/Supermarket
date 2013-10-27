@@ -8,6 +8,12 @@
       <total>0</total>
       <medio>0</medio>
     </caixa>
+    <caixa id="2">
+      <nFila>0</nFila>
+      <nAtend>0</nAtend>
+      <total>0</total>
+      <medio>0</medio>
+    </caixa>
   </caixas>
   <clientes />
 </supermarket>

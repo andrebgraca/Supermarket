@@ -1,5 +1,6 @@
 package pt.ulht.supermarket;
 
+import java.util.List;
 import java.util.Scanner;
 
 import pt.ulht.beans.*;
@@ -14,22 +15,32 @@ public class Supermarket {
 	public static void main(String[] args) {
 		//args[0] - Nº Clientes ; args[1] - Nº Caixas ??
 		
+
+		
 		Integer modo;
-		Integer continuar;
+		Integer escolhaContinuar;
+		boolean continuar = false;
 		boolean sairManual = false;
+		Integer nClientesCriados;
+		Integer nCaixasCriadas;
 		/*Thread modoManual = new Thread(new ModoManual());*/
 		
 		
 		modo = Helpers.modoFuncionamento();
-		continuar = Helpers.continuarExec();
+		escolhaContinuar = Helpers.continuarExec();
 		
-		switch(continuar) {
+		switch(escolhaContinuar) {
 		case 1: 
 			System.out.println("Escolheu Nova Execução");
 			DataLogs.initLog(modo.toString());
 			break;
 		case 2:
 			System.out.println("Escolheu Continuar Execução");
+			continuar = true;
+			nClientesCriados = DataLogs.getClientListFromXML().size();
+			nCaixasCriadas = DataLogs.getRegisterListFromXML().size();
+			System.out.println("Nº de Clientes Existentes: "+nClientesCriados);
+			System.out.println("Nº de Caixas Existentes: "+nCaixasCriadas);
 			break;
 		}
 		
@@ -71,9 +82,6 @@ public class Supermarket {
 						 escolha != 4 &&
 						 escolha != 5 &&
 						 escolha != 6);
-				
-							
-	
 	
 					switch (escolha) {
 					

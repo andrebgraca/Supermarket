@@ -1,6 +1,7 @@
 package pt.ulht.utils;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jdom2.Attribute;
@@ -10,6 +11,9 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
+
+import pt.ulht.beans.Caixa;
+import pt.ulht.beans.Cliente;
 
 
 public class DataLogs {
@@ -70,6 +74,40 @@ public class DataLogs {
 		return null;
 	}
 	
+	//Devolve Lista de objectos Cliente existentes no Log (Continuar Execução) - Not Tested
+	public static List<Cliente> buildClientListFromLog() {
+		SAXBuilder builder = new SAXBuilder();
+		File xmlFile = new File(filePath);
+		String id;
+		String nProdutos;
+		List<Cliente> listaClientes = new ArrayList<Cliente>();
+		try {
+			Document document = (Document) builder.build(xmlFile);
+			Element rootNode = document.getRootElement();
+			
+			Element eClientes = rootNode.getChild("clientes");
+			List<Element> eClientList = eClientes.getChildren();
+			
+			if (eClientList != null) {
+				for (int i = 0; i < eClientList.size(); i++) {
+					Element eClient = eClientList.get(i);
+					id = eClient.getAttribute("id").getValue();
+					nProdutos = eClient.getChildText("nProdutos");
+					Cliente cliente = new Cliente(Integer.parseInt(id), Integer.parseInt(nProdutos));
+					listaClientes.add(cliente);
+				}//End For Cycle
+			return listaClientes;
+			}//End IF List != null
+		} catch (IOException io) {
+			System.out.println("IO Exception!");
+			io.printStackTrace();
+		} catch (JDOMException jdex) {
+			System.out.println("JDOM Exception!");
+			jdex.printStackTrace();
+		}
+		return null;
+	}
+	
 	//Devolve Lista de Elements <caixa>
 	public static List<Element> getRegisterListFromXML () {
 		SAXBuilder builder = new SAXBuilder();
@@ -94,6 +132,50 @@ public class DataLogs {
 		return null;
 	}
 	
+	//Devolve Lista de objectos Caixa existentes no Log (Continuar Execução)
+	public static List<Caixa> buildRegisterListFromLog() {
+		SAXBuilder builder = new SAXBuilder();
+		File xmlFile = new File(filePath);
+		String id;
+		String nFila;
+		String nAtend;
+		String total;
+		String medio;
+		
+		List<Caixa> listaCaixas = new ArrayList<Caixa>();
+		try {
+			Document document = (Document) builder.build(xmlFile);
+			Element rootNode = document.getRootElement();
+			
+			Element eCaixas = rootNode.getChild("caixas");
+			List<Element> eRegisterList = eCaixas.getChildren();
+			
+			if (eRegisterList != null) {
+				for (int i = 0; i < eRegisterList.size(); i++) {
+					Element eCaixa = eRegisterList.get(i);
+					id = eCaixa.getAttribute("id").getValue();
+					nFila = eCaixa.getChildText("nFila");
+					nAtend = eCaixa.getChildText("nAtend");
+					total = eCaixa.getChildText("total");
+					medio = eCaixa.getChildText("medio");
+					Caixa caixa = new Caixa(Integer.parseInt(id),
+												  Integer.parseInt(nFila),
+												  Integer.parseInt(nAtend),
+												  Integer.parseInt(total),
+												  Integer.parseInt(medio));
+					listaCaixas.add(caixa);
+				}//End For Cycle
+			return listaCaixas;
+			}//End IF List != null
+		} catch (IOException io) {
+			System.out.println("IO Exception!");
+			io.printStackTrace();
+		} catch (JDOMException jdex) {
+			System.out.println("JDOM Exception!");
+			jdex.printStackTrace();
+		}
+		return null;
+	}
 	
 	//Imprime os Logs com base numa "choice" - <clientes> ou <caixas>
 	public static List<Element> readLog(String choice) {
