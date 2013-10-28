@@ -294,7 +294,7 @@ public class DataLogs {
 		}
 	}
 	
-	public static void deleteRegister(String id) { //Not Working
+	public static void deleteRegister(String id) { //Delete Register from XML
 		
 		try {
 			
@@ -309,13 +309,20 @@ public class DataLogs {
 			Element registerToDelete = null;
 			
 			for (int i = 0; i < listaCaixas.size(); i++) {
-				if (listaCaixas.get(i).getAttribute("id").getValue() == id) {
+				if (listaCaixas.get(i).getAttribute("id").getValue().equalsIgnoreCase(id)) {
 					registerToDelete = listaCaixas.get(i);
+					System.out.println("DataLogs Deleting Caixa ID: "+listaCaixas.get(i).getAttributeValue("id")+" from XML File...");
 				}
 			}
-			
-			
+
 			eCaixas.removeContent(registerToDelete);
+			
+			XMLOutputter xmlOutput = new XMLOutputter();
+			xmlOutput.setFormat(Format.getPrettyFormat());
+			xmlOutput.output(doc, new FileWriter(filePath));
+			
+			System.out.println("Register Deleted!");
+			
 			//rootNode.removeContent(registerToDelete);
 			
 		} catch (IOException io) {
@@ -325,8 +332,39 @@ public class DataLogs {
 		}
 	}
 	
-	public static void deleteClient(String id) {
+	public static void deleteClient(String id) { //Not Tested
+		try {
+			
+			SAXBuilder builder = new SAXBuilder();
+			File xmlFile = new File(filePath);
 		
+			Document doc = (Document) builder.build(xmlFile);
+			Element rootNode = doc.getRootElement();
+			
+			Element eClientes = rootNode.getChild("clientes");
+			List<Element> listaClientes = eClientes.getChildren();
+			Element clientToDelete = null;
+			
+			for (int i = 0; i < listaClientes.size(); i++) {
+				if (listaClientes.get(i).getAttribute("id").getValue().equalsIgnoreCase(id)) {
+					clientToDelete = listaClientes.get(i);
+					System.out.println("DataLogs Deleting Client ID: "+listaClientes.get(i).getAttributeValue("id")+" from XML File...");
+				}
+			}
+			
+			eClientes.removeContent(clientToDelete);
+			
+			XMLOutputter xmlOutput = new XMLOutputter();
+			xmlOutput.setFormat(Format.getPrettyFormat());
+			xmlOutput.output(doc, new FileWriter(filePath));
+			
+			System.out.println("Client Deleted Successfully!");
+
+		} catch (IOException io) {
+			io.printStackTrace();
+		} catch (JDOMException jdex) {
+			jdex.printStackTrace();
+		}
 	}
 
 	

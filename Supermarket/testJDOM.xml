@@ -2,12 +2,6 @@
 <supermarket>
   <modo>2</modo>
   <caixas>
-    <caixa id="1">
-      <nFila>0</nFila>
-      <nAtend>0</nAtend>
-      <total>0</total>
-      <medio>0</medio>
-    </caixa>
     <caixa id="2">
       <nFila>0</nFila>
       <nAtend>0</nAtend>
@@ -15,12 +9,6 @@
       <medio>0</medio>
     </caixa>
     <caixa id="3">
-      <nFila>0</nFila>
-      <nAtend>0</nAtend>
-      <total>0</total>
-      <medio>0</medio>
-    </caixa>
-    <caixa id="4">
       <nFila>0</nFila>
       <nAtend>0</nAtend>
       <total>0</total>

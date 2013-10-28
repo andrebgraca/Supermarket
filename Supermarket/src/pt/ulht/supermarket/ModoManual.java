@@ -63,9 +63,13 @@ public class ModoManual {
 			}
 		}
 		
-		for (int i = 1; i < listaCaixasManual.size(); i++) { //For each Caixa in ListaCaixasManual
+		for (int i = 0; i < listaCaixasManual.size(); i++) { //For each Caixa in ListaCaixasManual
+			System.out.println("N Caixas Manual (retirar): "+listaCaixasManual.size());
+			System.out.println("I Value (retirar): "+i);
 			if (listaCaixasManual.get(i).getnClientesFila() == 0) { //Se não tiver clientes em fila, remove-se da lista
-				listaCaixasManual.remove(i);
+				System.out.println("Caixa ID: "+listaCaixasManual.get(i).getId()+"não tem clientes em fila");
+				listaCaixasManual.remove(i); // Ao remover 1ª, 2ª dá IndexOutOfBounds. - Possível Solução listaCaixas - HashMap (Caixa, Cliente) e remove element if Cliente == Null
+				System.out.println("retirarCaixas Caixa ID: "+listaCaixasManual.get(i).getId());
 				DataLogs.deleteRegister(listaCaixasManual.get(i).getId().toString());
 			}
 		}

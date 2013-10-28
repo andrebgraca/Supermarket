@@ -16,7 +16,7 @@ public class Caixa implements Runnable {
 	
 	public Caixa(Integer id) { //Para novas Caixas
 		this.id = id;
-		this.nClientesFila = listaClientes.size();
+		this.nClientesFila = 0;
 		this.nClientesAtendidos = 0;
 		this.tempoMedioAtendimento = 0;
 		this.tempoTotalAtendimento = 0;
@@ -43,7 +43,7 @@ public class Caixa implements Runnable {
 	}
 
 	public Integer getnClientesFila() {
-		return listaClientes.size();
+		return nClientesFila;
 	}
 
 	public Integer getnClientesAtendidos() {
