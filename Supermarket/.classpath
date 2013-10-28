@@ -2,11 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="C:/Users/Joao/Dropbox/Univ/LP2/eclipse/json-simple-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Joao/Dropbox/Univ/LP2/eclipse/jdom-2.0.5/jdom-2.0.5.jar" sourcepath="C:/Users/Joao/Dropbox/Univ/LP2/eclipse/jdom-2.0.5/jdom-2.0.5-sources.jar">
+	<classpathentry kind="lib" path="C:/Users/jfr/Documents/GitHub/Supermarket/Supermarket/libs/json-simple/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jfr/Documents/GitHub/Supermarket/Supermarket/libs/jdom/jdom-2.0.5.jar" sourcepath="C:/Users/jfr/Documents/GitHub/Supermarket/Supermarket/libs/jdom/jdom-2.0.5-sources.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/C:/Users/Joao/Dropbox/Univ/LP2/eclipse/jdom-2.0.5/jdom-2.0.5-javadoc.jar!/"/>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Joao/Dropbox/Univ/LP2/eclipse/jdom-2.0.5/lib"/>
+			<attribute name="javadoc_location" value="jar:file:/C:/Users/jfr/Documents/GitHub/Supermarket/Supermarket/libs/jdom/jdom-2.0.5-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/jfr/Documents/GitHub/Supermarket/Supermarket/libs/jdom/lib"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
