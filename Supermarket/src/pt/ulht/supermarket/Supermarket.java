@@ -99,7 +99,7 @@ public class Supermarket {
 							ModoManual.mostrarFilas();
 							break;
 						case 4:
-							//DataLogs.deleteRegister("2"); - Testing
+							//DataLogs.deleteRegister("2");
 							ModoManual.retirarCaixas();
 							break;
 						case 5:

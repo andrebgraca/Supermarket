@@ -37,12 +37,14 @@ public class ModoManual {
 	public static void mostrarFilas() {
 		if (!Supermarket.listaCaixasLog.isEmpty()) {
 			for (int i = 0; i < Supermarket.listaCaixasLog.size(); i++) {
-				listaCaixasManual.add(Supermarket.listaCaixasLog.get(i));
+				if (!Supermarket.listaCaixasLog.contains(listaCaixasManual.get(i))) {
+					listaCaixasManual.add(Supermarket.listaCaixasLog.get(i));
+				}
 			}
 		}
 			for (int i = 0; i < listaCaixasManual.size(); i++)  {
 				System.out.println("------------------------");
-				System.out.println("| ID: "+listaCaixasManual.get(i).getId()+"                |");
+				System.out.println("| ID: "+( listaCaixasManual.get(i).getId() + 1 )+"                |");
 				System.out.println("| Fila: "+listaCaixasManual.get(i).getnClientesFila()+"              |");
 				System.out.println("| Atend: "+listaCaixasManual.get(i).getnClientesAtendidos()+"             |");
 				System.out.println("| Total: "+listaCaixasManual.get(i).getTempoTotalAtendimento()+"             |");
@@ -53,17 +55,18 @@ public class ModoManual {
 	
 	
 	public static void retirarCaixas() { //Not Working
-		List<Caixa> listaCaixasLog = DataLogs.buildRegisterListFromLog();
-		
-		if (listaCaixasLog != null){
-			for (int i = 0; i < listaCaixasLog.size(); i++) {
-				listaCaixasManual.add(listaCaixasLog.get(i));
+		if (!Supermarket.listaCaixasLog.isEmpty()) {
+			for (int i = 0; i < Supermarket.listaCaixasLog.size(); i++) {
+				if (!Supermarket.listaCaixasLog.contains(listaCaixasManual.get(i))) {
+					listaCaixasManual.add(Supermarket.listaCaixasLog.get(i));
+				}
 			}
 		}
 		
-		for (Caixa caixa : listaCaixasManual) { //For each Caixa in ListaCaixasManual
-			if (caixa.getnClientesFila() == 0) { //Se não tiver clientes em fila, remove-se da lista
-				listaCaixasManual.remove(caixa);
+		for (int i = 1; i < listaCaixasManual.size(); i++) { //For each Caixa in ListaCaixasManual
+			if (listaCaixasManual.get(i).getnClientesFila() == 0) { //Se não tiver clientes em fila, remove-se da lista
+				listaCaixasManual.remove(i);
+				DataLogs.deleteRegister(listaCaixasManual.get(i).getId().toString());
 			}
 		}
 		

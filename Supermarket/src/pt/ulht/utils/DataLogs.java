@@ -314,7 +314,9 @@ public class DataLogs {
 				}
 			}
 			
-			rootNode.removeContent(registerToDelete);
+			
+			eCaixas.removeContent(registerToDelete);
+			//rootNode.removeContent(registerToDelete);
 			
 		} catch (IOException io) {
 			io.printStackTrace();
